@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+ 
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <style>
+        .arrow {
+            float: right;
+            margin-left: 5px;
+            border: solid rgb(255, 255, 255);
+            border-width: 0 5px 5px 0;
+            display: inline-block;
+            padding: 8px;
+            transform: rotate(45deg);
+            border-radius: 5px;
+        }
+        .container {
+            display: flex;
+            justify-content: space-between;
+            max-width: 3000px;
+            margin: 0 auto;
+        }
+        .column {
+            width: 80%;
+            margin-bottom: 20px;
+        }
+        figcaption {
+            text-decoration: none;
+        }
+        .clickable-image {
+            border: 4px solid #6e6f70; 
+            border-radius: 25px; /* rounded corners */
+            cursor: pointer; /* Change cursor on hover */
+            transition: border 0.3s ease; /* Add a smooth transition effect */
+        }
+
+        /* Change border color on hover */
+        .clickable-image:hover {
+            border-color: #d5daed;
+        }
+        .header {
+            padding: 30px;
+            text-align: center;
+            background: #afafaa;
+            color: white;
+            font-size: 30px;
+        }
+        .body{
+            background-color: bisque;
+        }
+    </style>
+    
+</head>
+<body class="body">  
+    <div class="header" style="text-align: left; "> Bottons could go here</div>
+    
+    <!--Can use CSS to style later-->
+    <p style ="text-align: center; font-size:38px; line-height: 1; padding-bottom:10px; margin-top:15px"> 
+        <b>PAGE TITLE WILL GO HERE <br><br> NEXT LINE</b><br><br><br></p>  
+    
+    <div class="container">
+        <div id="column1" class="column">
+            <p style= "font-size: 30px; line-height: 1;"><b>EVENTS</b></p>
+        </div>  
+        <div id="column2" class="column" style="text-align: center;">
+            <p style="font-size: 30px; line-height: 1;"><b>COLUMN #2 TITLE</b></p> 
+            <a href="https://www.w3schools.com/howto/howto_js_accordion.asp" class="button-link" style="border: 4px solid #6e6f70;"> W3Schools </a> <br>
+            <br>
+            <a href="https://www.af.mil/News/Art/igphoto/2000790654/">
+            <img class="clickable-image" src="https://foreverwingman.com/wp-content/uploads/2021/08/Air-Force-Symbol-300x283.jpg" alt="AF Symbol" style="height: 180px; width: 183px;"> 
+                <figcaption>Maybe a picture with a link. </figcaption> 
+            </a>
+            <br>
+            <iframe src="https://onedrive.live.com/embed?resid=DB8E06641AE6D733%212542&amp;authkey=!AA0KNpd8_LO_hIk&amp;em=2&amp;wdAr=1.7777777777777777" width="325px" height="250px" frameborder="0">This is an embedded <a target="_blank" href="https://office.com">Microsoft Office</a> presentation, powered by <a target="_blank" href="https://office.com/webapps">Office</a>.</iframe>
+        </div>
+    </div>
+        <!--In addition to console.log, use this div to write anyvalue from javascript that we
+            want to simply evaluate or view -->
+        
+    
+    
+</body>
+
+<script type="text/javascript">  
+
+    // Use a manually built data object to substitute for SP data
+    var data =      
+    [
+        {'EventName': 'title 1jdjkdfsjkdsjkdfsjkfdsjdfsjfsjfjfjdfjdfdf kjfjdfjfhjfjhfh jfjfjhfjdfhjfjhfhjfhjfjhfhjfhjdfhjsdafsdfd sfdsfdsafsdf dsfsfdsfdsfsdfglg khkhklrfmkkfprk m999999999999 999222 TESTING IF IT WILL GO TO THE NEXT LINE ON ITS OWN', 'EventType': 'type 1', 'EventDesc': 'desc 1' },
+        {'EventName': 'title 2 jdjkdfsjkdsjkdfs jkfdsjdfsjfsjfjfjd fjdfdfkjfjdfjfhjfjhfh jfjfjhfjdf hjfjhfh jfhjfjhfhjfhjdfhjsdafsdfd sfdsfdsafsdf dsfsfdsfdsfsdfglg khkhklrfmkkfprk m999999999999 999222 TESTING IF IT WILL GO TO THE NEXT LINE ON ITS OWN', 'EventType': 'type 2', 'EventDesc': 'desc 2' },
+        {'EventName': 'title 3', 'EventType': 'type 3', 'EventDesc': 'desc 3' }
+        
+    ]  
+    
+    // Do not call getList() when running on local machine. Web app not authorized to connect from local to SP
+    //getList()
+    
+    buildAccordion();
+    // Will work once this web page hosted in SP
+    function getList() {        
+                var url = 
+                
+       
+                $.ajax({
+                    url: url,
+                    type: "GET",
+                    headers: {
+                    "accept": "application/json;odata=verbose",
+                    },
+                success: function (results) {              
+                    data = data && data2.d ? data.d.results : null;                
+                    buildAccordion()            
+                }
+            })
+        }
+
+    function buildAccordion () {
+        // get the data array from above
+        let myData = data  
+        
+        var  AccordionString = ""
+        
+        myData.map((rec, index) =>{ 
+            //for (var i = 0; i < myData.length; i++)
+            
+                // Do something
+                //console.log (num, rec ) // Output to the F12 console
+                //alert (num + ' ' + JSON.stringify(rec))
+
+        var accordionStringTemp =  `
+            <div class="panel-group" id="accordion">
+
+                <div class="panel panel-default ">
+
+                    <div class="panel-heading" style = "background-color: #d5daed">
+
+                        <h4 class="panel-title" >
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse` + index + `">` + rec.EventType + ` <span class="arrow"></span> </a>
+                           
+                        </h4>
+                    </div>
+                        <div id="collapse` + index + `" class="panel-collapse collapse in">
+
+                            <div class="panel-body">
+                                <b>` + rec.EventName + `</b><br><br>`+ rec.EventDesc + `
+                                                                                           
+                        </div>
+                    </div>
+                </div>  
+            </div>`                                                                        
+        
+        
+        AccordionString += accordionStringTemp;
+        
+    })
+    document.getElementById("column1").innerHTML += AccordionString
+}
+
+</script> 
+
+</html>
